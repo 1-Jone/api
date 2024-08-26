@@ -1,0 +1,68 @@
+server:
+  port: 9000
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/byapi?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+  jackson:
+    time-zone: GMT+8
+    date-format: "yyyy-MM-dd HH:mm:ss"
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    servlet:
+      path: /api
+
+  mail:
+    username: # 此处填自己的邮箱
+    # 授权码
+    password: # 此处填自己的邮箱授权码
+    host: smtp.qq.com
+    default-encoding: utf-8
+    # 开启加密验证
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enabled: true
+  # 允许循环依赖
+  main:
+    allow-circular-references: true
+
+  # redis配置
+  redis:
+    host: localhost
+    port: 6379
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+byapi:
+  server:
+    path:
+      domain: http://localhost:9000/api
+      address: D:\idea\project\byapi-backend\byapi-server\src\main\resources\images
+
+dubbo:
+  application:
+    name: provider
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: nacos://localhost:8848
+
+
+
+
+
